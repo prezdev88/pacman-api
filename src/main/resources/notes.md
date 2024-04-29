@@ -15,6 +15,9 @@ pacman -Qmei
 # Upgrades info
 pacman -Qu
 
+# Get info by package name
+pacman -Qi libxft
+
 # Upgrades native (yay)
 yay -Qun
 
@@ -29,6 +32,7 @@ pacman:
 - get installed packages (native) (pacman -Qnei)
 - get installed packages (foreign) (pacman -Qmei)
 - get upgrade packages info (pacman -Qu)
+- get package info by name (pacman -Qi $name)
 
 yay:
 - get upgrade packages info native (yay -Qun)
@@ -40,3 +44,25 @@ yay:
 API --> PackageService --> PacmanImpl --> CommandService
                       |--> YayImpl
 
+# Model: Package example
+Nombre                    : xterm
+Versión                   : 390-1
+Descripción               : X Terminal Emulator
+Arquitectura              : x86_64
+URL                       : https://invisible-island.net/xterm/
+Licencias                 : custom
+Grupos                    : Nada
+Provee                    : Nada
+Depende de                : libxft  libxaw  ncurses  luit  xbitmaps  libutempter  libxkbfile
+Dependencias opcionales   : Nada
+Exigido por               : Nada
+Opcional para             : graphviz  xorg-xinit
+En conflicto con          : Nada
+Remplaza a                : Nada
+Tamaño de la instalación  : 1014,71 KiB
+Encargado                 : T.J. Townsend <blakkheim@archlinux.org>
+Fecha de creación         : mar 20 feb 2024 12:31:31
+Fecha de instalación      : jue 22 feb 2024 14:48:46
+Motivo de la instalación  : Instalado explícitamente
+Guion de instalación      : No
+Validado por              : Firma
