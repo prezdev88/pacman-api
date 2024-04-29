@@ -21,6 +21,9 @@ yay -Qun
 # Upgrades Foreign (yay)
 yay -Qum
 
+# Upgrade native and foreign
+yay -Qu
+
 # Uses cases
 pacman:
 - get installed packages (native) (pacman -Qnei)
@@ -32,5 +35,8 @@ yay:
 - get upgrade packages info foreign (yay -Qum)
 
 # Architecture
-API --> PacmanService --> CommandService
+
+
+API --> PackageService --> PacmanImpl --> CommandService
+                      |--> YayImpl
 
