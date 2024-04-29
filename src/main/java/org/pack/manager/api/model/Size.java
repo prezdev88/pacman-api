@@ -1,4 +1,4 @@
-package com.example.pacmanapi.model;
+package org.pack.manager.api.model;
 
 import lombok.Getter;
 import lombok.Setter;

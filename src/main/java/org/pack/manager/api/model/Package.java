@@ -1,4 +1,4 @@
-package com.example.pacmanapi.model;
+package org.pack.manager.api.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
