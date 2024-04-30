@@ -27,7 +27,7 @@ public class PacmanServiceImpl implements PackageService {
 
         CommandRequest commandRequest = new CommandRequest();
 
-        commandRequest.setCommand("pacman -Qnei");
+        commandRequest.setCommand("pacman -Qnei vlc");
 
         CommandResult commandResult = commandRunner.exec(commandRequest);
 
@@ -54,7 +54,7 @@ public class PacmanServiceImpl implements PackageService {
             } catch (ArrayIndexOutOfBoundsException e) {
                 index--;
                 String pastValue = hashMap.get(index);
-                String value = pastValue + " " + line.trim();
+                String value = pastValue + "\n" + line.trim();
 
                 hashMap.put(index, value);
             }
@@ -73,14 +73,14 @@ public class PacmanServiceImpl implements PackageService {
         pack.setArchitecture(hashMap.get(3));
         pack.setUrl(hashMap.get(4));
         pack.setLicences(hashMap.get(5));
-        // pack.setGroups(hashMap.get(6));
-        // pack.setProvides(hashMap.get(7));
-        // pack.setDepends(hashMap.get(8));
-        // pack.setOptionalDependencies(hashMap.get(9));
-        // pack.setRequestedBy(hashMap.get(10));
-        // pack.setOptionalFor(hashMap.get(11));
-        // pack.setInConflictWith(hashMap.get(12));
-        // pack.setReplaces(hashMap.get(13));
+        pack.setGroups(hashMap.get(6));
+        pack.setProvides(hashMap.get(7));
+        pack.setDepends(hashMap.get(8));
+        pack.setOptionalDependencies(hashMap.get(9));
+        pack.setRequestedBy(hashMap.get(10));
+        pack.setOptionalFor(hashMap.get(11));
+        pack.setInConflictWith(hashMap.get(12));
+        pack.setReplaces(hashMap.get(13));
 
         try {
             Size size = new Size();
@@ -93,10 +93,10 @@ public class PacmanServiceImpl implements PackageService {
             pack.setSize(null);
         }
         pack.setManager(hashMap.get(15));
-        // pack.setCreationDateTime(hashMap.get(16));
-        // pack.setInstallDateTime(hashMap.get(17));
+        pack.setCreationDateTime(hashMap.get(16));
+        pack.setInstallDateTime(hashMap.get(17));
         pack.setReasonInstallation(hashMap.get(18));
-        // pack.setInstallationScript(hashMap.get(19));
+        pack.setInstallationScript(hashMap.get(19));
         pack.setValidatedBy(hashMap.get(20));
 
         return pack;
