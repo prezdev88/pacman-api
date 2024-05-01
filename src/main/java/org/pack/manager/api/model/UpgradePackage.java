@@ -1,19 +1,14 @@
 package org.pack.manager.api.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UpgradePackage extends Package {
-
+@AllArgsConstructor
+public class UpgradePackage {
+    private String name;
+    private String version;
     private String newVersion;
-
-    public UpgradePackage(String name, String version, String newVersion) {
-        super();
-
-        super.setName(name);
-        super.setVersion(version);
-        this.newVersion = newVersion;
-    }
 }
