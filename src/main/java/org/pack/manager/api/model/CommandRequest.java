@@ -14,6 +14,11 @@ public class CommandRequest {
         this.command = command;
     }
 
+    public CommandRequest(String command, String rootPassword) {
+        this.command = command;
+        this.rootPassword = rootPassword;
+    }
+
     public String getCommand() {
         if (isSudoCommand()) {
             command = "echo " + rootPassword + " | sudo -S " + command;

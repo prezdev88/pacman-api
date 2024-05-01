@@ -18,6 +18,17 @@ public class PackageMapperImpl implements PackageMapper {
     private final SizeService sizeService;
 
     @Override
+    public Package mapToOne(List<String> output) {
+        List<Package> packages = map(output);
+
+        if (packages.isEmpty()) {
+            return null;
+        }
+
+        return packages.get(0);
+    }
+
+    @Override
     public List<Package> map(List<String> output) {
         int lineIndex = 0;
         List<Package> packages = new ArrayList<>();
