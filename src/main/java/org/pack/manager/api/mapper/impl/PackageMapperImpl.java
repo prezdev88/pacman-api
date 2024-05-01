@@ -4,43 +4,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.pack.manager.api.mapper.PackageMapper;
+import org.pack.manager.api.model.Line;
 import org.pack.manager.api.model.Package;
-import org.pack.manager.api.model.Size;
+import org.pack.manager.api.service.SizeService;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class PackageMapperImpl implements PackageMapper {
+
+    private final SizeService sizeService;
 
     @Override
     public List<Package> map(List<String> output) {
-        int index = 0;
+        int lineIndex = 0;
         List<Package> packages = new ArrayList<>();
-        HashMap<Integer, String> hashMap = new HashMap<>();
+        HashMap<Integer, String> packageHashMap = new HashMap<>();
 
-        for (String line : output) {
-            if (line.equals("")) {
-                Package pack = this.map(hashMap);
-                packages.add(pack);
+        for (String stringLine : output) {
+            if (stringLine.isEmpty()) {
+                addPackageToList(packageHashMap, packages);
 
-                index = 0;
-                hashMap = new HashMap<>();
+                lineIndex = 0;
+                packageHashMap = new HashMap<>();
+
                 continue;
             }
 
-            try {
-                // String name = line.split(" : ")[0].trim();
-                String value = line.split(" : ")[1].trim();
+            Line line = processLine(stringLine, packageHashMap, lineIndex);
+            packageHashMap.put(line.getIndex(), line.getValue());
 
-                hashMap.put(index, value);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                index--;
-                String pastValue = hashMap.get(index);
-                String value = pastValue + "\n" + line.trim();
-
-                hashMap.put(index, value);
+            if (line.isIncreaseIndex()) {
+                lineIndex++;
             }
-            index++;
         }
 
         return packages;
@@ -64,17 +62,7 @@ public class PackageMapperImpl implements PackageMapper {
         pack.setOptionalFor(packageHashMap.get(11));
         pack.setInConflictWith(packageHashMap.get(12));
         pack.setReplaces(packageHashMap.get(13));
-
-        try {
-            Size size = new Size();
-
-            size.setValue(Float.parseFloat(packageHashMap.get(14).replaceAll(",", ".").split(" ")[0]));
-            size.setUnit(packageHashMap.get(14).split(" ")[1]);
-
-            pack.setSize(size);
-        } catch (NumberFormatException | NullPointerException e) {
-            pack.setSize(null);
-        }
+        pack.setSize(sizeService.map(packageHashMap));
         pack.setManager(packageHashMap.get(15));
         pack.setCreationDateTime(packageHashMap.get(16));
         pack.setInstallDateTime(packageHashMap.get(17));
@@ -85,4 +73,19 @@ public class PackageMapperImpl implements PackageMapper {
         return pack;
     }
 
+    private Line processLine(String line, HashMap<Integer, String> packageHashMap, int index) {
+        try {
+            String value = line.split(" : ")[1].trim();
+            return new Line(index, value, true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            String previousValue = packageHashMap.get(--index);
+            String value = previousValue + "\n" + line.trim();
+            return new Line(index, value, false);
+        }
+    }
+
+    private void addPackageToList(HashMap<Integer, String> packageHashMap, List<Package> packages) {
+        Package pack = this.map(packageHashMap);
+        packages.add(pack);
+    }
 }

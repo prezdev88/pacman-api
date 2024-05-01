@@ -24,7 +24,7 @@ public class PacmanServiceImpl implements PackageService {
     public List<Package> getInstalledPackages() {
         CommandRequest commandRequest = new CommandRequest();
 
-        commandRequest.setCommand("pacman -Qnei vlc");
+        commandRequest.setCommand("pacman -Qnei");
 
         CommandResult commandResult = commandRunner.exec(commandRequest);
 
