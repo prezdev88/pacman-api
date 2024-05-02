@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 import org.pack.manager.api.exception.PackageNotFoundException;
+import org.pack.manager.api.exception.WrongPasswordException;
 import org.pack.manager.api.mapper.LitePackageMapper;
 import org.pack.manager.api.mapper.PackageMapper;
 import org.pack.manager.api.mapper.UpgradePackageMapper;
@@ -50,7 +51,9 @@ public class PacmanServiceImpl implements PackageService {
         CommandRequest commandRequest = new CommandRequest("pacman -Sy", rootPassword);
         CommandResult commandResult = commandRunner.exec(commandRequest);
 
-        log.info("pacman -Sy success?: {}", commandResult.isSuccess());
+        if (commandResult.isNotSuccess()) {
+            throw new WrongPasswordException();
+        }
 
         commandRequest = new CommandRequest("pacman -Qu");
         commandResult = commandRunner.exec(commandRequest);

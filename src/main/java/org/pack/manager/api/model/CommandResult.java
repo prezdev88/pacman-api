@@ -14,6 +14,10 @@ public class CommandResult {
     private int exitCode;
     private List<String> output;
 
+    public boolean isNotSuccess() {
+        return !isSuccess();
+    }
+
     public boolean isSuccess() {
         return exitCode == 0;
     }

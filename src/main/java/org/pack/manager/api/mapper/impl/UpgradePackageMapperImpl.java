@@ -1,5 +1,6 @@
 package org.pack.manager.api.mapper.impl;
 
+import org.pack.manager.api.exception.NoPackagesToUpgradeException;
 import org.pack.manager.api.mapper.UpgradePackageMapper;
 import org.pack.manager.api.model.UpgradePackage;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class UpgradePackageMapperImpl implements UpgradePackageMapper {
             UpgradePackage upgradePackage = this.map(line);
             upgradePackages.add(upgradePackage);
         });
+
+        if (upgradePackages.isEmpty()) {
+            throw new NoPackagesToUpgradeException();
+        }
 
         return upgradePackages;
     }

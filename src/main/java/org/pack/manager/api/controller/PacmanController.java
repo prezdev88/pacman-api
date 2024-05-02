@@ -32,8 +32,6 @@ public class PacmanController {
         return ResponseEntity.ok().body(liteExplicitInstalledPackagesResponse);
     }
 
-    // TODO: throw exception when password is wrong
-    // TODO: throw exception when no upgrade package
     @GetMapping("/upgrade")
     public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
