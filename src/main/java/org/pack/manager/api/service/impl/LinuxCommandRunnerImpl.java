@@ -19,8 +19,10 @@ public class LinuxCommandRunnerImpl implements CommandRunner {
     public CommandResult exec(CommandRequest commandRequest) {
         try {
             String command = commandRequest.getCommand();
+            String[] stringCommand = new String[] { "bash", "-c", command };
 
-            Process process = Runtime.getRuntime().exec(new String[] { "bash", "-c", command });
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec(stringCommand);
 
             List<String> output = readOutput(process);
             int exitCode = process.waitFor();

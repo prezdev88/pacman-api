@@ -61,7 +61,7 @@ public class PacmanServiceImpl implements PackageService {
 
     @Override
     public Package getPackageBy(String name) {
-        CommandRequest commandRequest = new CommandRequest("pacman -Qnei " + name);
+        CommandRequest commandRequest = new CommandRequest("pacman -Qni " + name);
         CommandResult commandResult = commandRunner.exec(commandRequest);
 
         List<String> output = commandResult.getOutput();
