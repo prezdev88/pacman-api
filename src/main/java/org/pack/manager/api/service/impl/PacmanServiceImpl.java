@@ -3,6 +3,7 @@ package org.pack.manager.api.service.impl;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+import org.pack.manager.api.exception.PackageNotFoundException;
 import org.pack.manager.api.mapper.LitePackageMapper;
 import org.pack.manager.api.mapper.PackageMapper;
 import org.pack.manager.api.mapper.UpgradePackageMapper;
@@ -61,12 +62,16 @@ public class PacmanServiceImpl implements PackageService {
 
     @Override
     public Package getPackageBy(String name) {
-        CommandRequest commandRequest = new CommandRequest("pacman -Qni " + name);
-        CommandResult commandResult = commandRunner.exec(commandRequest);
+        try {
+            CommandRequest commandRequest = new CommandRequest("pacman -Qni " + name);
+            CommandResult commandResult = commandRunner.exec(commandRequest);
 
-        List<String> output = commandResult.getOutput();
+            List<String> output = commandResult.getOutput();
 
-        return packageMapper.mapToOne(output);
+            return packageMapper.mapToOne(output);
+        } catch (PackageNotFoundException ex) {
+            throw new PackageNotFoundException("Package " + name + " not found");
+        }
     }
 
 }

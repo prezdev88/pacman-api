@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import org.pack.manager.api.exception.PackageNotFoundException;
 import org.pack.manager.api.mapper.PackageMapper;
 import org.pack.manager.api.model.Line;
 import org.pack.manager.api.model.Package;
@@ -22,7 +23,7 @@ public class PackageMapperImpl implements PackageMapper {
         List<Package> packages = map(output);
 
         if (packages.isEmpty()) {
-            return null;
+            throw new PackageNotFoundException();
         }
 
         return packages.get(0);

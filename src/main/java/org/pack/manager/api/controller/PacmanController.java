@@ -33,6 +33,7 @@ public class PacmanController {
     }
 
     // TODO: throw exception when password is wrong
+    // TODO: throw exception when no upgrade package
     @GetMapping("/upgrade")
     public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
@@ -40,7 +41,6 @@ public class PacmanController {
         return ResponseEntity.ok().body(upgradePackagesResponse);
     }
 
-    // TODO: throw exception when package not found
     @GetMapping("/{name}")
     public ResponseEntity<PackageByNameResponse> getPackageByName(@PathVariable("name") String name) {
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();
