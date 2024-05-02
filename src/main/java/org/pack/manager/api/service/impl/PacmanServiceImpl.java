@@ -73,7 +73,7 @@ public class PacmanServiceImpl implements PackageService {
 
             return packageMapper.mapToOne(output);
         } catch (PackageNotFoundException ex) {
-            throw new PackageNotFoundException("Package " + name + " not found");
+            throw new PackageNotFoundException("Package '" + name + "' not found");
         }
     }
 
