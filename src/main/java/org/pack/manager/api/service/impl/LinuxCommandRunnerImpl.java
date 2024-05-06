@@ -7,11 +7,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.pack.manager.api.model.CommandRequest;
 import org.pack.manager.api.model.CommandResult;
 import org.pack.manager.api.service.CommandRunner;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class LinuxCommandRunnerImpl implements CommandRunner {
 
@@ -30,6 +32,8 @@ public class LinuxCommandRunnerImpl implements CommandRunner {
             if (exitCode != 0) {
                 output = read(process.getErrorStream());
             }
+
+            log.info(">> [{}] executed", command);
 
             return new CommandResult(exitCode, output);
         } catch (Exception e) {

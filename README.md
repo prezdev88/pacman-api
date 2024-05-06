@@ -19,7 +19,7 @@ curl -i -X GET "http://localhost:8080/api/v1/pacman/packages/upgrade?password=$r
 
 #### Response when root password is wrong
 ```
-HTTP/1.1 404
+HTTP/1.1 400
 {"message": "Wrong root password"}
 ```
 

@@ -66,3 +66,13 @@ Fecha de instalación      : jue 22 feb 2024 14:48:46
 Motivo de la instalación  : Instalado explícitamente
 Guion de instalación      : No
 Validado por              : Firma
+
+
+# Grupos
+pacman -Sg
+
+# Paquetes de un grupo
+pacman -Sg ${groupName}
+
+# Infor del paquete de un grupo
+pacman -Si ${packageName}
