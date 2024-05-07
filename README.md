@@ -38,3 +38,13 @@ curl -i -X GET "http://localhost:8080/api/v1/pacman/packages/vlc"
 HTTP/1.1 404
 {"message":"Package 'vlcs' not found"}
 ```
+
+### Get groups name
+```commandline
+curl -i -X GET "http://localhost:8080/api/v1/pacman/groups"
+```
+
+### Get package names by group name
+```commandline
+curl -i -X GET "http://localhost:8080/api/v1/pacman/groups/{name}"
+```

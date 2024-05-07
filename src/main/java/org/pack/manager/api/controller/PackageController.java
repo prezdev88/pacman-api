@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/pacman/packages")
-public class PacmanController {
+public class PackageController {
 
     private final PackageService packageService;
 

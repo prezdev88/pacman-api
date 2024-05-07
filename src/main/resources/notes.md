@@ -45,6 +45,7 @@ API --> PackageService --> PacmanImpl --> CommandService
                       |--> YayImpl
 
 # Model: Package example
+```
 Nombre                    : xterm
 Versión                   : 390-1
 Descripción               : X Terminal Emulator
@@ -66,6 +67,7 @@ Fecha de instalación      : jue 22 feb 2024 14:48:46
 Motivo de la instalación  : Instalado explícitamente
 Guion de instalación      : No
 Validado por              : Firma
+```
 
 
 # Grupos
@@ -74,5 +76,27 @@ pacman -Sg
 # Paquetes de un grupo
 pacman -Sg ${groupName}
 
-# Infor del paquete de un grupo
+# Info del paquete de un grupo
 pacman -Si ${packageName}
+
+# Model: Info del paquete de un grupo
+```
+Repositorio               : extra
+Nombre                    : xorg-font-util
+Versión                   : 1.4.1-1
+Descripción               : X.Org font utilities
+Arquitectura              : x86_64
+URL                       : https://xorg.freedesktop.org/
+Licencias                 : custom
+Grupos                    : xorg-fonts  xorg
+Provee                    : font-util
+Depende de                : glibc
+Dependencias opcionales   : Nada
+En conflicto con          : font-util
+Remplaza a                : font-util
+Tamaño de la descarga     : 33,46 KiB
+Tamaño de la instalación  : 228,23 KiB
+Encargado                 : Andreas Radke <andyrtr@archlinux.org>
+Fecha de creación         : vie 08 sep 2023 06:38:47
+Validado por              : Suma MD5  Suma SHA-256  Firma
+```
