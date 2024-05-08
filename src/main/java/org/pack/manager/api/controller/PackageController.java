@@ -1,6 +1,5 @@
 package org.pack.manager.api.controller;
 
-
 import org.pack.manager.api.model.response.ExplicitInstalledPackagesResponse;
 import org.pack.manager.api.model.response.LiteExplicitInstalledPackagesResponse;
 import org.pack.manager.api.model.response.PackageByNameResponse;

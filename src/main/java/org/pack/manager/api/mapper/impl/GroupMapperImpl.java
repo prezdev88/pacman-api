@@ -47,26 +47,26 @@ public class GroupMapperImpl implements GroupMapper {
 
     @Override
     public GroupPackage map(HashMap<Integer, String> groupPackageHashMap) {
-        GroupPackage pack = new GroupPackage();
+        GroupPackage groupPackage = new GroupPackage();
 
-        pack.setRepository(groupPackageHashMap.get(0));
-        pack.setName(groupPackageHashMap.get(1));
-        pack.setVersion(groupPackageHashMap.get(2));
-        pack.setDescription(groupPackageHashMap.get(3));
-        pack.setArchitecture(groupPackageHashMap.get(4));
-        pack.setUrl(groupPackageHashMap.get(5));
-        pack.setGroups(groupPackageHashMap.get(7));
-        pack.setProvides(groupPackageHashMap.get(8));
-        pack.setDepends(groupPackageHashMap.get(9));
-        pack.setOptionalDependencies(groupPackageHashMap.get(10));
-        pack.setInConflictWith(groupPackageHashMap.get(11));
-        pack.setReplaces(groupPackageHashMap.get(12));
-        pack.setDownloadSize(sizeService.map(groupPackageHashMap, 13));
-        pack.setInstallationSize(sizeService.map(groupPackageHashMap, 14));
-        pack.setManager(groupPackageHashMap.get(15));
-        pack.setCreationDate(groupPackageHashMap.get(16));
-        pack.setValidatedBy(groupPackageHashMap.get(17));
+        groupPackage.setRepository(groupPackageHashMap.get(0));
+        groupPackage.setName(groupPackageHashMap.get(1));
+        groupPackage.setVersion(groupPackageHashMap.get(2));
+        groupPackage.setDescription(groupPackageHashMap.get(3));
+        groupPackage.setArchitecture(groupPackageHashMap.get(4));
+        groupPackage.setUrl(groupPackageHashMap.get(5));
+        groupPackage.setGroups(groupPackageHashMap.get(7));
+        groupPackage.setProvides(groupPackageHashMap.get(8));
+        groupPackage.setDepends(groupPackageHashMap.get(9));
+        groupPackage.setOptionalDependencies(groupPackageHashMap.get(10));
+        groupPackage.setInConflictWith(groupPackageHashMap.get(11));
+        groupPackage.setReplaces(groupPackageHashMap.get(12));
+        groupPackage.setDownloadSize(sizeService.map(groupPackageHashMap, 13));
+        groupPackage.setInstallationSize(sizeService.map(groupPackageHashMap, 14));
+        groupPackage.setManager(groupPackageHashMap.get(15));
+        groupPackage.setCreationDate(groupPackageHashMap.get(16));
+        groupPackage.setValidatedBy(groupPackageHashMap.get(17));
 
-        return pack;
+        return groupPackage;
     }
 }

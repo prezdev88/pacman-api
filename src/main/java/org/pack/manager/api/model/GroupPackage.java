@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -41,36 +40,36 @@ public class GroupPackage {
     public void setLicenses(String licenses) {
         this.licenses = Arrays.stream(licenses.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void setGroups(String groups) {
         this.groups = Arrays.stream(groups.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void setProvides(String provides) {
         this.provides = Arrays.stream(provides.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void setDepends(String depends) {
         this.depends = Arrays.stream(depends.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void setOptionalDependencies(String optionalFor) {
         this.optionalDependencies = Arrays.stream(optionalFor.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void setInConflictWith(String inConflictWith) {
         this.inConflictWith = Arrays.stream(inConflictWith.split("\\s+"))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
