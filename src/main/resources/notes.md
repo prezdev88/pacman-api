@@ -100,3 +100,21 @@ pacman -Si ${packageName}
 16 Fecha de creación        : vie 08 sep 2023 06:38:47
 17 Validado por             : Suma MD5  Suma SHA-256  Firma
 ```
+
+# Hacer (See: PackageService)
+La idea es que existan dos implementaciones de PackageService:
+- NativePackageServiceImpl
+- ForeignPackageServiceImpl
+
+#  ForeignPackageServiceImpl
+## Get foreign installed package
+pacman -Qmei
+
+## Get foreign installed package (lite)
+pacman -Qme
+
+## Get upgrade foreign packages
+yay -Qum
+
+## Get foreign package info by package name
+pacman -Qmei visual-studio-code-bin
