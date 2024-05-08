@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.pack.manager.api.mapper.GroupMapper;
 import org.pack.manager.api.model.CommandRequest;
 import org.pack.manager.api.model.CommandResult;
+import org.pack.manager.api.model.GroupPackage;
 import org.pack.manager.api.service.CommandRunner;
 import org.pack.manager.api.service.GroupService;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,15 @@ public class GroupServiceImpl implements GroupService {
         List<String> output = commandResult.getOutput();
 
         return groupMapper.mapToPackageNames(output);
+    }
+
+    @Override
+    public GroupPackage getPackageBy(String packageGroupName) {
+        CommandRequest commandRequest = new CommandRequest("pacman -Si " + packageGroupName);
+        CommandResult commandResult = commandRunner.exec(commandRequest);
+
+        List<String> output = commandResult.getOutput();
+
+        return groupMapper.map(output);
     }
 }

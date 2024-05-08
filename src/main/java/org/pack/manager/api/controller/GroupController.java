@@ -1,6 +1,7 @@
 package org.pack.manager.api.controller;
 
 import lombok.AllArgsConstructor;
+import org.pack.manager.api.model.GroupPackage;
 import org.pack.manager.api.model.response.*;
 import org.pack.manager.api.service.GroupService;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,11 @@ public class GroupController {
         GroupPackageResponse groupPackageResponse = new GroupPackageResponse();
         groupPackageResponse.setPackages(groupService.getPackageNamesBy(groupName));
         return ResponseEntity.ok().body(groupPackageResponse);
+    }
+
+    @GetMapping("/package/{name}")
+    public ResponseEntity<GroupPackage> getPackageBy(@PathVariable("name") String packageName) {
+        return ResponseEntity.ok().body(groupService.getPackageBy(packageName));
     }
 
 }

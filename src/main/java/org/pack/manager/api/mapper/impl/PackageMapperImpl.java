@@ -74,7 +74,7 @@ public class PackageMapperImpl implements PackageMapper {
         pack.setOptionalFor(packageHashMap.get(11));
         pack.setInConflictWith(packageHashMap.get(12));
         pack.setReplaces(packageHashMap.get(13));
-        pack.setSize(sizeService.map(packageHashMap));
+        pack.setSize(sizeService.map(packageHashMap, 14));
         pack.setManager(packageHashMap.get(15));
         pack.setCreationDateTime(packageHashMap.get(16));
         pack.setInstallDateTime(packageHashMap.get(17));

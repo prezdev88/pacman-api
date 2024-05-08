@@ -81,22 +81,22 @@ pacman -Si ${packageName}
 
 # Model: Info del paquete de un grupo
 ```
-Repositorio               : extra
-Nombre                    : xorg-font-util
-Versión                   : 1.4.1-1
-Descripción               : X.Org font utilities
-Arquitectura              : x86_64
-URL                       : https://xorg.freedesktop.org/
-Licencias                 : custom
-Grupos                    : xorg-fonts  xorg
-Provee                    : font-util
-Depende de                : glibc
-Dependencias opcionales   : Nada
-En conflicto con          : font-util
-Remplaza a                : font-util
-Tamaño de la descarga     : 33,46 KiB
-Tamaño de la instalación  : 228,23 KiB
-Encargado                 : Andreas Radke <andyrtr@archlinux.org>
-Fecha de creación         : vie 08 sep 2023 06:38:47
-Validado por              : Suma MD5  Suma SHA-256  Firma
+0 Repositorio               : extra
+1 Nombre                    : xorg-font-util
+2 Versión                   : 1.4.1-1
+3 Descripción               : X.Org font utilities
+4 Arquitectura              : x86_64
+5 URL                       : https://xorg.freedesktop.org/
+6 Licencias                 : custom
+7 Grupos                    : xorg-fonts  xorg
+8 Provee                    : font-util
+9 Depende de                : glibc
+10 Dependencias opcionales  : Nada
+11 En conflicto con         : font-util
+12 Remplaza a               : font-util
+13 Tamaño de la descarga    : 33,46 KiB
+14 Tamaño de la instalación : 228,23 KiB
+15 Encargado                : Andreas Radke <andyrtr@archlinux.org>
+16 Fecha de creación        : vie 08 sep 2023 06:38:47
+17 Validado por             : Suma MD5  Suma SHA-256  Firma
 ```

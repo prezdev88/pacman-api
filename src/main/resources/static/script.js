@@ -238,110 +238,27 @@ function generatePackageTable(package) {
     let tableHTML = '<table border="1">';
     tableHTML += '<tbody>';
 
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Name:</strong></td>`;
-    tableHTML += `<td>${package.name}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Version:</strong></td>`;
-    tableHTML += `<td>${package.version}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Description:</strong></td>`;
-    tableHTML += `<td>${package.description}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Architecture:</strong></td>`;
-    tableHTML += `<td>${package.architecture}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>URL:</strong></td>`;
-    tableHTML += `<td>${package.url}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Licences:</strong></td>`;
-    tableHTML += `<td>${package.licences}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Groups:</strong></td>`;
-    tableHTML += `<td>${package.groups.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Provides:</strong></td>`;
-    tableHTML += `<td>${package.provides.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Depends:</strong></td>`;
-    tableHTML += `<td>${package.depends.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Optional Dependencies:</strong></td>`;
-    tableHTML += `<td>${package.optionalDependencies.join('<br>')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Requested By:</strong></td>`;
-    tableHTML += `<td>${package.requestedBy.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Optional For:</strong></td>`;
-    tableHTML += `<td>${package.optionalFor.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>In Conflict With:</strong></td>`;
-    tableHTML += `<td>${package.inConflictWith.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Replaces:</strong></td>`;
-    tableHTML += `<td>${package.replaces.join(', ')}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Size:</strong></td>`;
-    tableHTML += `<td>${package.size.value} ${package.size.unit}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Manager:</strong></td>`;
-    tableHTML += `<td>${package.manager}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Creation Date Time:</strong></td>`;
-    tableHTML += `<td>${package.creationDateTime}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Install Date Time:</strong></td>`;
-    tableHTML += `<td>${package.installDateTime}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Reason Installation:</strong></td>`;
-    tableHTML += `<td>${package.reasonInstallation}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Installation Script:</strong></td>`;
-    tableHTML += `<td>${package.installationScript}</td>`;
-    tableHTML += '</tr>';
-
-    tableHTML += '<tr>';
-    tableHTML += `<td><strong>Validated By:</strong></td>`;
-    tableHTML += `<td>${package.validatedBy}</td>`;
-    tableHTML += '</tr>';
+    tableHTML += generateRow('Name', package.name);
+    tableHTML += generateRow('Version', package.version);
+    tableHTML += generateRow('Description', package.description);
+    tableHTML += generateRow('Architecture', package.architecture);
+    tableHTML += generateRow('URL', package.url);
+    tableHTML += generateRow('Licences', package.licences);
+    tableHTML += generateRow('Groups', package.groups.join(', '));
+    tableHTML += generateRow('Provides', package.provides.join(', '));
+    tableHTML += generateRow('Depends', package.depends.join(', '));
+    tableHTML += generateRow('Optional Dependencies', package.optionalDependencies.join('<br>'));
+    tableHTML += generateRow('Requested By', package.requestedBy.join(', '));
+    tableHTML += generateRow('Optional For', package.optionalFor.join(', '));
+    tableHTML += generateRow('In Conflict With', package.inConflictWith.join(', '));
+    tableHTML += generateRow('Replaces', package.replaces.join(', '));
+    tableHTML += generateRow('Size', `${package.size.value} ${package.size.unit}`);
+    tableHTML += generateRow('Manager', package.manager);
+    tableHTML += generateRow('Creation Date Time', package.creationDateTime);
+    tableHTML += generateRow('Install Date Time', package.installDateTime);
+    tableHTML += generateRow('Reason Installation', package.reasonInstallation);
+    tableHTML += generateRow('Installation Script', package.installationScript);
+    tableHTML += generateRow('Validated By', package.validatedBy);
 
     tableHTML += '</tbody>';
     tableHTML += '</table>';
@@ -420,4 +337,61 @@ function generatePackageList(packages) {
     });
     listHTML += "</ul>";
     return listHTML;
+}
+
+// Obtener el botón por su id
+const packageDetailsBtn = document.getElementById('getPackageDetailsBtn');
+
+// Agregar event listener al botón
+packageDetailsBtn.addEventListener('click', () => {
+    const packageName = prompt("Enter package name:");
+    if (packageName) {
+        getPackageDetails(packageName);
+    }
+});
+
+function getPackageDetails(packageName) {
+    fetch(`http://localhost:8080/api/v1/pacman/groups/package/${packageName}`)
+        .then(response => response.json())
+        .then(data => handlePackageDetailsResponse(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function handlePackageDetailsResponse(response) {
+    const responseDiv = document.getElementById('response');
+    const packageData = response;
+    const tableHTML = generatePackageDetailsTable(packageData);
+    responseDiv.innerHTML = `<pre>${tableHTML}</pre>`;;
+}
+
+function generatePackageDetailsTable(packageData) {
+    let tableHTML = '<table border="1">';
+    tableHTML += '<tbody>';
+
+    tableHTML += generateRow('Repository', packageData.repository);
+    tableHTML += generateRow('Name', packageData.name);
+    tableHTML += generateRow('Version', packageData.version);
+    tableHTML += generateRow('Description', packageData.description);
+    tableHTML += generateRow('Architecture', packageData.architecture);
+    tableHTML += generateRow('URL', packageData.url);
+    tableHTML += generateRow('Groups', packageData.groups.join(', '));
+    tableHTML += generateRow('Provides', packageData.provides.join(', '));
+    tableHTML += generateRow('Depends', packageData.depends.join(', '));
+    tableHTML += generateRow('Optional Dependencies', packageData.optionalDependencies.join(', '));
+    tableHTML += generateRow('In Conflict With', packageData.inConflictWith.join(', '));
+    tableHTML += generateRow('Replaces', packageData.replaces);
+    tableHTML += generateRow('Download Size', `${packageData.downloadSize.value} ${packageData.downloadSize.unit}`);
+    tableHTML += generateRow('Installation Size', `${packageData.installationSize.value} ${packageData.installationSize.unit}`);
+    tableHTML += generateRow('Manager', packageData.manager);
+    tableHTML += generateRow('Creation Date', packageData.creationDate);
+    tableHTML += generateRow('Validated By', packageData.validatedBy);
+
+    tableHTML += '</tbody>';
+    tableHTML += '</table>';
+
+    return tableHTML;
+}
+
+function generateRow(label, value) {
+    return `<tr><td><strong>${label}:</strong></td><td>${value}</td></tr>`;
 }

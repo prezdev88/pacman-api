@@ -48,3 +48,8 @@ curl -i -X GET "http://localhost:8080/api/v1/pacman/groups"
 ```commandline
 curl -i -X GET "http://localhost:8080/api/v1/pacman/groups/{name}"
 ```
+
+### Get package by package group name
+```commandline
+curl -i -X GET "http://localhost:8080/api/v1/pacman/groups/package/{name}"
+```
