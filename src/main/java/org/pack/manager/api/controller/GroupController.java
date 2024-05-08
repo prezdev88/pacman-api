@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/pacman/groups")
+@RequestMapping("/api/v1/native/groups")
 public class GroupController {
 
     private final GroupService groupService;

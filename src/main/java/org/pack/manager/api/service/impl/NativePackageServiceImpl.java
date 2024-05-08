@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class PacmanServiceImpl implements PackageService {
+public class NativePackageServiceImpl implements PackageService {
 
     private final CommandRunner commandRunner;
     private final PackageMapper packageMapper;

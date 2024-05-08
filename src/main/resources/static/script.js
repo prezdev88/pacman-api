@@ -16,14 +16,14 @@ function handleResponse(response) {
 }
 
 function getInstalledPackages() {
-    fetch('http://localhost:8080/api/v1/pacman/packages/installed/explicit')
+    fetch('http://localhost:8080/api/v1/native/packages/installed/explicit')
         .then(response => response.text())
         .then(data => handleGetInstalledPackagesResponse(data))
         .catch(error => console.error('Error:', error));
 }
 
 function getLiteInstalledPackages() {
-    fetch('http://localhost:8080/api/v1/pacman/packages/installed/explicit/lite')
+    fetch('http://localhost:8080/api/v1/native/packages/installed/explicit/lite')
         .then(response => response.text())
         .then(data => handleLiteExplicitInstalledPackagesResponse(data))
         .catch(error => console.error('Error:', error));
@@ -35,7 +35,7 @@ function getPackagesToUpgrade() {
         return;
     }
 
-    fetch(`http://localhost:8080/api/v1/pacman/packages/upgrade?password=${rootPassword}`)
+    fetch(`http://localhost:8080/api/v1/native/packages/upgrade?password=${rootPassword}`)
         .then(response => {
             if (response.status === 400) {
                 return response.text().then(error => {
@@ -60,7 +60,7 @@ function getPackagesToUpgrade() {
 function getInstalledPackageByName() {
     const packageName = prompt("Enter package name:");
     if (packageName) {
-        fetch(`http://localhost:8080/api/v1/pacman/packages/${packageName}`)
+        fetch(`http://localhost:8080/api/v1/native/packages/${packageName}`)
             .then(response => {
                 if (response.status === 404) {
                     return response.text().then(errorMessage => {
@@ -280,7 +280,7 @@ function handleResponse(response) {
 }
 
 function getGroups() {
-    fetch('http://localhost:8080/api/v1/pacman/groups')
+    fetch('http://localhost:8080/api/v1/native/groups')
         .then(response => response.json())
         .then(data => handleGetGroupsResponse(data))
         .catch(error => console.error('Error:', error));
@@ -289,7 +289,7 @@ function getGroups() {
 function getPackagesByGroup() {
     const groupName = prompt("Enter group name:");
     if (groupName) {
-        fetch(`http://localhost:8080/api/v1/pacman/groups/${groupName}`)
+        fetch(`http://localhost:8080/api/v1/native/groups/${groupName}`)
             .then(response => {
                 if (response.status === 404) {
                     return response.text().then(errorMessage => {
@@ -351,7 +351,7 @@ packageDetailsBtn.addEventListener('click', () => {
 });
 
 function getPackageDetails(packageName) {
-    fetch(`http://localhost:8080/api/v1/pacman/groups/package/${packageName}`)
+    fetch(`http://localhost:8080/api/v1/native/groups/package/${packageName}`)
         .then(response => response.json())
         .then(data => handlePackageDetailsResponse(data))
         .catch(error => console.error('Error:', error));
