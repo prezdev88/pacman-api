@@ -5,6 +5,7 @@ import org.pack.manager.api.model.response.LiteExplicitInstalledPackagesResponse
 import org.pack.manager.api.model.response.PackageByNameResponse;
 import org.pack.manager.api.model.response.UpgradePackagesResponse;
 import org.pack.manager.api.service.PackageService;
+import org.pack.manager.api.util.TimeUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +20,37 @@ public class NativePackageController {
 
     @GetMapping("/installed/explicit")
     public ResponseEntity<ExplicitInstalledPackagesResponse> getExplicitInstalledPackages() {
+        TimeUtil.start("[native] get explicit installed packages");
         ExplicitInstalledPackagesResponse explicitInstalledPackagesResponse = new ExplicitInstalledPackagesResponse();
         explicitInstalledPackagesResponse.setPackages(nativePackageServiceImpl.getExplicitInstalledPackages());
+        TimeUtil.stopAndPrintElapsedTime();
         return ResponseEntity.ok().body(explicitInstalledPackagesResponse);
     }
 
     @GetMapping("/installed/explicit/lite")
     public ResponseEntity<LiteExplicitInstalledPackagesResponse> getLiteExplicitInstalledPackages() {
+        TimeUtil.start("[native] get lite explicit installed packages");
         LiteExplicitInstalledPackagesResponse liteExplicitInstalledPackagesResponse = new LiteExplicitInstalledPackagesResponse();
         liteExplicitInstalledPackagesResponse.setPackages(nativePackageServiceImpl.getExplicitLiteInstalledPackages());
+        TimeUtil.stopAndPrintElapsedTime();
         return ResponseEntity.ok().body(liteExplicitInstalledPackagesResponse);
     }
 
     @GetMapping("/upgrade")
     public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
+        TimeUtil.start("[native] get upgrade packages");
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
         upgradePackagesResponse.setPackages(nativePackageServiceImpl.getUpgradePackages(password));
+        TimeUtil.stopAndPrintElapsedTime();
         return ResponseEntity.ok().body(upgradePackagesResponse);
     }
 
     @GetMapping("/{name}")
     public ResponseEntity<PackageByNameResponse> getPackageByName(@PathVariable("name") String name) {
+        TimeUtil.start("[native] get package by name \"" + name +"\"");
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();
         packageByNameResponse.setPack(nativePackageServiceImpl.getPackageBy(name));
+        TimeUtil.stopAndPrintElapsedTime();
         return ResponseEntity.ok().body(packageByNameResponse);
     }
 
