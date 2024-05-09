@@ -4,17 +4,17 @@
   <summary>Native packages endpoints</summary>
 
 ### Get installed packages (explicit)
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit"
 ```
 
 ### Get installed packages (explicit). Lite version (name and version)
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit/lite"
 ```
 
 ### Get packages to upgrade
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/packages/upgrade?password=$rootPassword"
 ```
 
@@ -30,7 +30,7 @@ HTTP/1.1 204
 ```
 
 ### Get installed package by name
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/packages/vlc"
 ```
 
@@ -46,17 +46,17 @@ HTTP/1.1 404
   <summary>Foreign packages endpoints</summary>
 
 ### Get installed packages (explicit)
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit"
 ```
 
 ### Get installed packages (explicit). Lite version (name and version)
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit/lite"
 ```
 
 ### Get packages to upgrade
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade?password=$rootPassword"
 ```
 
@@ -87,17 +87,37 @@ HTTP/1.1 404
   <summary>Group packages endpoints</summary>
 
 ### Get groups name
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/groups"
 ```
 
 ### Get package names by group name
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/groups/{name}"
 ```
 
 ### Get package by package group name
-```commandline
+```bash
 curl -i -X GET "http://localhost:8080/api/v1/native/groups/package/{name}"
+```
+</details>
+
+<details>
+  <summary>Compile and run with JDK 21 GraalVM</summary>
+
+## Install JDK 21 GraalVM
+```bash
+yay -S jdk21-graalvm-bin
+```
+
+## Compile 
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-21-graalvm
+./mvnw native:compile -Pnative -DskipTests
+```
+
+## Run
+```bash
+./target/pacman-api 
 ```
 </details>
