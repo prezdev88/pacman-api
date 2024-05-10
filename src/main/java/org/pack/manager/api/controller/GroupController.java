@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/native/groups")
 @Tag(name = "Group packages", description = "Group packages API")
 public class GroupController {

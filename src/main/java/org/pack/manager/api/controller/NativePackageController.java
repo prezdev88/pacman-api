@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/native/packages")
 @Tag(name = "Native packages", description = "Native packages API")
 public class NativePackageController {

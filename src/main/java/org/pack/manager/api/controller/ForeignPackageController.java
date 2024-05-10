@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/foreign/packages")
 @Tag(name = "Foreign packages", description = "Foreign packages API")
 public class ForeignPackageController {
