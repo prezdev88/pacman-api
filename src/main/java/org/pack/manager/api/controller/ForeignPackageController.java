@@ -1,5 +1,7 @@
 package org.pack.manager.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.pack.manager.api.model.response.ExplicitInstalledPackagesResponse;
 import org.pack.manager.api.model.response.LiteExplicitInstalledPackagesResponse;
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/foreign/packages")
+@Tag(name = "Foreign packages", description = "Foreign packages API")
 public class ForeignPackageController {
 
     private final PackageService foreignPackageServiceImpl;
 
     @GetMapping("/installed/explicit")
+    @Operation(summary = "Get foreign explicit installed packages")
     public ResponseEntity<ExplicitInstalledPackagesResponse> getExplicitInstalledPackages() {
         TimeUtil.start("[foreign] get explicit installed packages");
         ExplicitInstalledPackagesResponse explicitInstalledPackagesResponse = new ExplicitInstalledPackagesResponse();
@@ -27,6 +31,7 @@ public class ForeignPackageController {
     }
 
     @GetMapping("/installed/explicit/lite")
+    @Operation(summary = "Get foreign explicit installed packages (lite)")
     public ResponseEntity<LiteExplicitInstalledPackagesResponse> getLiteExplicitInstalledPackages() {
         TimeUtil.start("[foreign] get lite explicit installed packages");
         LiteExplicitInstalledPackagesResponse liteExplicitInstalledPackagesResponse = new LiteExplicitInstalledPackagesResponse();
@@ -36,6 +41,7 @@ public class ForeignPackageController {
     }
 
     @GetMapping("/upgrade")
+    @Operation(summary = "Get foreign packages to upgrade")
     public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
         TimeUtil.start("[foreign] get upgrade packages");
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
@@ -45,6 +51,7 @@ public class ForeignPackageController {
     }
 
     @GetMapping("/{name}")
+    @Operation(summary = "Get foreign package by name")
     public ResponseEntity<PackageByNameResponse> getPackageByName(@PathVariable("name") String name) {
         TimeUtil.start("[foreign] get package by name \"" + name + "\"");
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();

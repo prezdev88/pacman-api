@@ -1,5 +1,7 @@
 package org.pack.manager.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.pack.manager.api.model.response.ExplicitInstalledPackagesResponse;
 import org.pack.manager.api.model.response.LiteExplicitInstalledPackagesResponse;
 import org.pack.manager.api.model.response.PackageByNameResponse;
@@ -14,11 +16,13 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/native/packages")
+@Tag(name = "Native packages", description = "Native packages API")
 public class NativePackageController {
 
     private final PackageService nativePackageServiceImpl;
 
     @GetMapping("/installed/explicit")
+    @Operation(summary = "Get explicit installed packages")
     public ResponseEntity<ExplicitInstalledPackagesResponse> getExplicitInstalledPackages() {
         TimeUtil.start("[native] get explicit installed packages");
         ExplicitInstalledPackagesResponse explicitInstalledPackagesResponse = new ExplicitInstalledPackagesResponse();
@@ -28,6 +32,7 @@ public class NativePackageController {
     }
 
     @GetMapping("/installed/explicit/lite")
+    @Operation(summary = "Get explicit installed packages (lite)")
     public ResponseEntity<LiteExplicitInstalledPackagesResponse> getLiteExplicitInstalledPackages() {
         TimeUtil.start("[native] get lite explicit installed packages");
         LiteExplicitInstalledPackagesResponse liteExplicitInstalledPackagesResponse = new LiteExplicitInstalledPackagesResponse();
@@ -37,6 +42,7 @@ public class NativePackageController {
     }
 
     @GetMapping("/upgrade")
+    @Operation(summary = "Get packages to upgrade")
     public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
         TimeUtil.start("[native] get upgrade packages");
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
@@ -46,8 +52,9 @@ public class NativePackageController {
     }
 
     @GetMapping("/{name}")
+    @Operation(summary = "Get package by name")
     public ResponseEntity<PackageByNameResponse> getPackageByName(@PathVariable("name") String name) {
-        TimeUtil.start("[native] get package by name \"" + name +"\"");
+        TimeUtil.start("[native] get package by name \"" + name + "\"");
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();
         packageByNameResponse.setPack(nativePackageServiceImpl.getPackageBy(name));
         TimeUtil.stopAndPrintElapsedTime();
