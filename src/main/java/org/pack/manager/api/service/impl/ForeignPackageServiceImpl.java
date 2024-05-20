@@ -11,6 +11,7 @@ import org.pack.manager.api.model.Package;
 import org.pack.manager.api.model.*;
 import org.pack.manager.api.service.CommandRunner;
 import org.pack.manager.api.service.PackageService;
+import org.pack.manager.api.service.UtilService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ForeignPackageServiceImpl implements PackageService {
     private final PackageMapper packageMapper;
     private final UpgradePackageMapper upgradePackageMapper;
     private final LitePackageMapper litePackageMapper;
+    private final UtilService utilService;
 
     @Override
     public List<Package> getExplicitInstalledPackages() {
@@ -65,6 +67,7 @@ public class ForeignPackageServiceImpl implements PackageService {
     @Override
     public Package getPackageBy(String name) {
         try {
+            name = utilService.clear(name);
             CommandRequest commandRequest = new CommandRequest("pacman -Qmei " + name);
             CommandResult commandResult = commandRunner.exec(commandRequest);
 
