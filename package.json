@@ -1,0 +1,19 @@
+{
+  "name": "pacman-api",
+  "version": "1.0.0",
+  "description": "## Swagger UI http://localhost:8080/swagger-ui/index.html",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-prezdev:prezdev88/pacman-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
+}

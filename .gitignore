@@ -33,3 +33,6 @@ build/
 .vscode/
 *.log
 *.gz
+
+node_modules
+package-lock.json

@@ -1,0 +1,14 @@
+{
+    "types": [
+        {"type": "feat", "section": "Features"},
+        {"type": "fix", "section": "Bug Fixes"},
+        {"type": "chore", "hidden": true},
+        {"type": "docs", "hidden": true},
+        {"type": "style", "section": "Style"},
+        {"type": "refactor", "section": "Refactor"},
+        {"type": "perf", "hidden": true},
+        {"type": "test", "section": "Test"}
+    ],
+    "commitUrlFormat": "https://github.com/prezdev88/pacman-api/commit/{{hash}}",
+    "compareUrlFormat": "https://github.com/prezdev88/pacman-api/compare/{{currentTag}}%0D{{previousTag}}"
+}
