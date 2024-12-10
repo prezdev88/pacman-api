@@ -42,6 +42,16 @@ curl -i -X GET "http://localhost:8080/api/v1/native/packages/vlc"
 HTTP/1.1 404
 {"message":"Package 'vlcs' not found"}
 ```
+
+### Get upgraded packages
+```bash
+curl -i -X GET "http://localhost:8080/api/v1/native/packages/upgraded?year=$year&month=$month"
+```
+
+#### Response when no upgraded packages
+```
+HTTP/1.1 204
+```
 </details>
 
 
