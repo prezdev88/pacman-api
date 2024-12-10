@@ -9,10 +9,11 @@ import java.time.OffsetDateTime;
 @Setter
 public class UpgradedPackage extends UpgradePackage {
 
-    private OffsetDateTime dateTime;
+    private UpdatedAt updatedAt;
 
     public UpgradedPackage(String name, String version, String newVersion, OffsetDateTime dateTime) {
         super(name, version, newVersion);
-        this.dateTime = dateTime;
+
+        updatedAt = new UpdatedAt(dateTime);
     }
 }

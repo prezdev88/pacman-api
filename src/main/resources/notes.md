@@ -118,3 +118,12 @@ yay -Qum
 
 ## Get foreign package info by package name
 pacman -Qmei visual-studio-code-bin
+
+## Get installed packages log apps by month and year
+grep '] installed' /var/log/pacman.log | grep '\[2024-12'
+
+## Get removed packages log apps by month and year
+grep '] removed' /var/log/pacman.log | grep '\[2024-12'
+
+## Get package history log by package name
+grep '\[ALPM\]' /var/log/pacman.log | grep 'discord'
