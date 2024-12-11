@@ -116,6 +116,16 @@ curl -i -X GET "http://localhost:8080/api/v1/native/groups/package/{name}"
 </details>
 
 <details>
+  <summary>Packages</summary>
+
+### Get package history by name
+```bash
+curl -i -X GET "http://localhost:8080/api/v1/packages/$name/history"
+```
+
+</details>
+
+<details>
   <summary>Compile and run with JDK 21 GraalVM</summary>
 
 ## Install JDK 21 GraalVM

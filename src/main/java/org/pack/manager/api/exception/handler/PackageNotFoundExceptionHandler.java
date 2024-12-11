@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class PackageNotFoundExceptionHandler {
 
     @ExceptionHandler(PackageNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> handlePackageNotFoundException(PackageNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> handle(PackageNotFoundException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }

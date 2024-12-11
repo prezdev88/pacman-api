@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class WrongPasswordExceptionHandler {
 
     @ExceptionHandler(WrongPasswordException.class)
-    public ResponseEntity<ExceptionResponse> handleWrongPasswordException(WrongPasswordException ex) {
+    public ResponseEntity<ExceptionResponse> handle(WrongPasswordException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse("Wrong root password");
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }

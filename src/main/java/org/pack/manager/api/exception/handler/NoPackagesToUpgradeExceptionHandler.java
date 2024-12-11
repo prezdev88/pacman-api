@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class NoPackagesToUpgradeExceptionHandler {
 
     @ExceptionHandler(NoPackagesToUpgradeException.class)
-    public ResponseEntity<ExceptionResponse> handleWrongPasswordException(NoPackagesToUpgradeException ex) {
+    public ResponseEntity<ExceptionResponse> handle(NoPackagesToUpgradeException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse();
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NO_CONTENT);
     }
