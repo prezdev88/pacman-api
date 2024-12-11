@@ -144,3 +144,20 @@ export JAVA_HOME=/usr/lib/jvm/java-21-graalvm
 ./target/pacman-api 
 ```
 </details>
+
+## All Endpoints
+```shell
+curl -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit" | jq
+curl -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit/lite" | jq
+curl -X GET "http://localhost:8080/api/v1/native/packages/upgrade?password=$rootPassword" | jq
+curl -X GET "http://localhost:8080/api/v1/native/packages/$name" | jq
+curl -X GET "http://localhost:8080/api/v1/native/packages/upgraded?year=$year&month=$month" | jq
+curl -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit" | jq
+curl -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit/lite" | jq
+curl -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade?password=$rootPassword" | jq
+curl -X GET "http://localhost:8080/api/v1/foreign/packages/$name" | jq
+curl -X GET "http://localhost:8080/api/v1/native/groups" | jq
+curl -X GET "http://localhost:8080/api/v1/native/groups/$name" | jq
+curl -X GET "http://localhost:8080/api/v1/native/groups/package/$name" | jq
+curl -X GET "http://localhost:8080/api/v1/packages/$name/history" | jq
+```
