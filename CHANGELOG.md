@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/prezdev88/pacman-api/compare/v1.2.0%0Dv1.1.0) (2024-12-14)
+
+
+### Features
+
+* add all endpoints in README.md file ([30981c9](https://github.com/prezdev88/pacman-api/commit/30981c99f6dd4fc01a183f9177b93f9147413655))
+* **endpoint:** add GET packages history by package name ([8ed8dce](https://github.com/prezdev88/pacman-api/commit/8ed8dceb792a625e9d269072c891273df1460166))
+
+
+### Bug Fixes
+
+* add spaces in get installed log command to search from complete package name in notes file ([b202791](https://github.com/prezdev88/pacman-api/commit/b2027910add26b4c6ce066387bcbffe59fdbfaa9))
+
+
+### Refactor
+
+* remove password of endpoints ([a0f7e00](https://github.com/prezdev88/pacman-api/commit/a0f7e00b2da40e63ea51eb48e5543992c600f7cb))
+
 ## 1.1.0 (2024-12-10)
 
 
