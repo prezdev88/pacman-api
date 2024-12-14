@@ -28,7 +28,7 @@ public class NativePackageController {
         TimeUtil.start("[native] get explicit installed packages");
         ExplicitInstalledPackagesResponse explicitInstalledPackagesResponse = new ExplicitInstalledPackagesResponse();
         explicitInstalledPackagesResponse.setPackages(nativePackageServiceImpl.getExplicitInstalledPackages());
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[native] get explicit installed packages");
         return ResponseEntity.ok().body(explicitInstalledPackagesResponse);
     }
 
@@ -38,17 +38,17 @@ public class NativePackageController {
         TimeUtil.start("[native] get lite explicit installed packages");
         LiteExplicitInstalledPackagesResponse liteExplicitInstalledPackagesResponse = new LiteExplicitInstalledPackagesResponse();
         liteExplicitInstalledPackagesResponse.setPackages(nativePackageServiceImpl.getExplicitLiteInstalledPackages());
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[native] get lite explicit installed packages");
         return ResponseEntity.ok().body(liteExplicitInstalledPackagesResponse);
     }
 
     @GetMapping("/upgrade")
     @Operation(summary = "Get packages to upgrade")
-    public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
+    public ResponseEntity<UpgradePackagesResponse> getUpgradePackages() {
         TimeUtil.start("[native] get upgrade packages");
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
-        upgradePackagesResponse.setPackages(nativePackageServiceImpl.getUpgradePackages(password));
-        TimeUtil.stopAndPrintElapsedTime();
+        upgradePackagesResponse.setPackages(nativePackageServiceImpl.getUpgradePackages());
+        TimeUtil.stopAndPrintElapsedTime("[native] get upgrade packages");
         return ResponseEntity.ok().body(upgradePackagesResponse);
     }
 
@@ -58,7 +58,7 @@ public class NativePackageController {
         TimeUtil.start("[native] get package by name \"" + name + "\"");
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();
         packageByNameResponse.setPack(nativePackageServiceImpl.getPackageBy(name));
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[native] get package by name \"" + name + "\"");
         return ResponseEntity.ok().body(packageByNameResponse);
     }
 

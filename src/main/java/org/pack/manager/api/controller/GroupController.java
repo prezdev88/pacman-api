@@ -25,7 +25,7 @@ public class GroupController {
         TimeUtil.start("[groups] get groups");
         GroupResponse groupResponse = new GroupResponse();
         groupResponse.setGroupNames(groupService.getGroupNames());
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[groups] get groups");
         return ResponseEntity.ok().body(groupResponse);
     }
 
@@ -35,7 +35,7 @@ public class GroupController {
         TimeUtil.start("[groups] get package name by \"" + groupName + "\"");
         GroupPackageResponse groupPackageResponse = new GroupPackageResponse();
         groupPackageResponse.setPackages(groupService.getPackageNamesBy(groupName));
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[groups] get package name by \"" + groupName + "\"");
         return ResponseEntity.ok().body(groupPackageResponse);
     }
 
@@ -44,7 +44,7 @@ public class GroupController {
     public ResponseEntity<GroupPackage> getPackageBy(@PathVariable("name") String packageName) {
         TimeUtil.start("[groups] get package by \"" + packageName + "\"");
         GroupPackage packageBy = groupService.getPackageBy(packageName);
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[groups] get package by \"" + packageName + "\"");
         return ResponseEntity.ok().body(packageBy);
     }
 

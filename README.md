@@ -18,7 +18,7 @@ curl -i -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit/
 
 ### Get packages to upgrade
 ```bash
-curl -i -X GET "http://localhost:8080/api/v1/native/packages/upgrade?password=$rootPassword"
+curl -i -X GET "http://localhost:8080/api/v1/native/packages/upgrade"
 ```
 
 #### Response when root password is wrong
@@ -70,7 +70,7 @@ curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit
 
 ### Get packages to upgrade
 ```bash
-curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade?password=$rootPassword"
+curl -i -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade"
 ```
 
 #### Response when root password is wrong
@@ -149,12 +149,12 @@ export JAVA_HOME=/usr/lib/jvm/java-21-graalvm
 ```shell
 curl -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit" | jq
 curl -X GET "http://localhost:8080/api/v1/native/packages/installed/explicit/lite" | jq
-curl -X GET "http://localhost:8080/api/v1/native/packages/upgrade?password=$rootPassword" | jq
+curl -X GET "http://localhost:8080/api/v1/native/packages/upgrade" | jq
 curl -X GET "http://localhost:8080/api/v1/native/packages/$name" | jq
 curl -X GET "http://localhost:8080/api/v1/native/packages/upgraded?year=$year&month=$month" | jq
 curl -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit" | jq
 curl -X GET "http://localhost:8080/api/v1/foreign/packages/installed/explicit/lite" | jq
-curl -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade?password=$rootPassword" | jq
+curl -X GET "http://localhost:8080/api/v1/foreign/packages/upgrade" | jq
 curl -X GET "http://localhost:8080/api/v1/foreign/packages/$name" | jq
 curl -X GET "http://localhost:8080/api/v1/native/groups" | jq
 curl -X GET "http://localhost:8080/api/v1/native/groups/$name" | jq

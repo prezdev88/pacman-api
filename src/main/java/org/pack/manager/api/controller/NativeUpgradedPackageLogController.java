@@ -27,7 +27,7 @@ public class NativeUpgradedPackageLogController {
     public ResponseEntity<GeNativeUpgradedPackagesResponse> getUpgradedPackages(@ModelAttribute GetUpgradedPackagesRequest getUpgradedPackagesRequest) {
         TimeUtil.start("[native] get upgraded packages by month and year");
         List<UpgradedPackage> upgradedPackages = pacmanUpgradedPackagesServiceImpl.getUpgradedPackages(getUpgradedPackagesRequest);
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[native] get upgraded packages by month and year");
 
         return ResponseEntity.ok().body(new GeNativeUpgradedPackagesResponse(upgradedPackages));
     }

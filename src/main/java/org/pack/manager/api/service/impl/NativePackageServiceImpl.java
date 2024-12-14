@@ -49,16 +49,9 @@ public class NativePackageServiceImpl implements PackageService {
     }
 
     @Override
-    public List<UpgradePackage> getUpgradePackages(String rootPassword) {
-        CommandRequest commandRequest = new CommandRequest("pacman -Sy", rootPassword);
+    public List<UpgradePackage> getUpgradePackages() {
+        CommandRequest commandRequest = new CommandRequest("pacman -Qu");
         CommandResult commandResult = commandRunner.exec(commandRequest);
-
-        if (commandResult.isNotSuccess()) {
-            throw new WrongPasswordException();
-        }
-
-        commandRequest = new CommandRequest("pacman -Qu");
-        commandResult = commandRunner.exec(commandRequest);
 
         List<String> output = commandResult.getOutput();
 

@@ -27,7 +27,7 @@ public class ForeignPackageController {
         TimeUtil.start("[foreign] get explicit installed packages");
         ExplicitInstalledPackagesResponse explicitInstalledPackagesResponse = new ExplicitInstalledPackagesResponse();
         explicitInstalledPackagesResponse.setPackages(foreignPackageServiceImpl.getExplicitInstalledPackages());
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[foreign] get explicit installed packages");
         return ResponseEntity.ok().body(explicitInstalledPackagesResponse);
     }
 
@@ -37,17 +37,17 @@ public class ForeignPackageController {
         TimeUtil.start("[foreign] get lite explicit installed packages");
         LiteExplicitInstalledPackagesResponse liteExplicitInstalledPackagesResponse = new LiteExplicitInstalledPackagesResponse();
         liteExplicitInstalledPackagesResponse.setPackages(foreignPackageServiceImpl.getExplicitLiteInstalledPackages());
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[foreign] get lite explicit installed packages");
         return ResponseEntity.ok().body(liteExplicitInstalledPackagesResponse);
     }
 
     @GetMapping("/upgrade")
     @Operation(summary = "Get foreign packages to upgrade")
-    public ResponseEntity<UpgradePackagesResponse> getUpgradePackages(@RequestParam("password") String password) {
+    public ResponseEntity<UpgradePackagesResponse> getUpgradePackages() {
         TimeUtil.start("[foreign] get upgrade packages");
         UpgradePackagesResponse upgradePackagesResponse = new UpgradePackagesResponse();
-        upgradePackagesResponse.setPackages(foreignPackageServiceImpl.getUpgradePackages(password));
-        TimeUtil.stopAndPrintElapsedTime();
+        upgradePackagesResponse.setPackages(foreignPackageServiceImpl.getUpgradePackages());
+        TimeUtil.stopAndPrintElapsedTime("[foreign] get upgrade packages");
         return ResponseEntity.ok().body(upgradePackagesResponse);
     }
 
@@ -57,7 +57,7 @@ public class ForeignPackageController {
         TimeUtil.start("[foreign] get package by name \"" + name + "\"");
         PackageByNameResponse packageByNameResponse = new PackageByNameResponse();
         packageByNameResponse.setPack(foreignPackageServiceImpl.getPackageBy(name));
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[foreign] get package by name \"" + name + "\"");
         return ResponseEntity.ok().body(packageByNameResponse);
     }
 

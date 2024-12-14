@@ -26,7 +26,7 @@ public class PackageHistoryController {
     public ResponseEntity<GePackageHistoryResponse> getHistoryBy(@PathVariable("name") String name) {
         TimeUtil.start("[packages] get package history by package name");
         List<PackageHistory> packageHistory = packageHistoryService.getPackageHistory(name);
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[packages] get package history by package name");
 
         return ResponseEntity.ok().body(new GePackageHistoryResponse(packageHistory));
     }

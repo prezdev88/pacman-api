@@ -3,7 +3,6 @@ package org.pack.manager.api.service.impl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.pack.manager.api.exception.PackageNotFoundException;
-import org.pack.manager.api.exception.WrongPasswordException;
 import org.pack.manager.api.mapper.LitePackageMapper;
 import org.pack.manager.api.mapper.PackageMapper;
 import org.pack.manager.api.mapper.UpgradePackageMapper;
@@ -48,16 +47,9 @@ public class ForeignPackageServiceImpl implements PackageService {
     }
 
     @Override
-    public List<UpgradePackage> getUpgradePackages(String rootPassword) {
-        CommandRequest commandRequest = new CommandRequest("yay -Sy", rootPassword);
+    public List<UpgradePackage> getUpgradePackages() {
+        CommandRequest commandRequest = new CommandRequest("yay -Qum");
         CommandResult commandResult = commandRunner.exec(commandRequest);
-
-        if (commandResult.isNotSuccess()) {
-            throw new WrongPasswordException();
-        }
-
-        commandRequest = new CommandRequest("yay -Qum");
-        commandResult = commandRunner.exec(commandRequest);
 
         List<String> output = commandResult.getOutput();
 

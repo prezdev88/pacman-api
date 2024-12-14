@@ -20,7 +20,7 @@ public class TestController {
     @Operation(summary = "Execute the test")
     public ResponseEntity<Object> test(@RequestParam Map<String, String> queryParams) {
         TimeUtil.start("[test] test");
-        TimeUtil.stopAndPrintElapsedTime();
+        TimeUtil.stopAndPrintElapsedTime("[test] test");
         return ResponseEntity.accepted().build();
     }
 }

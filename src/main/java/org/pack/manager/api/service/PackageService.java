@@ -12,7 +12,7 @@ public interface PackageService {
 
     List<LitePackage> getExplicitLiteInstalledPackages();
 
-    List<UpgradePackage> getUpgradePackages(String rootPassword);
+    List<UpgradePackage> getUpgradePackages();
 
     Package getPackageBy(String name);
 }

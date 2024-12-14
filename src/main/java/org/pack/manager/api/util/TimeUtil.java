@@ -18,12 +18,12 @@ public class TimeUtil {
         startTime = System.currentTimeMillis();
     }
 
-    public static void stopAndPrintElapsedTime() {
+    public static void stopAndPrintElapsedTime(String title) {
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         totalElapsedTime += elapsedTime;
 
-        log.info(">> ⏱ {}s [{}]", (elapsedTime / 1000.0), TimeUtil.title);
+        log.info(">> ⏱ {}s [{}]", (elapsedTime / 1000.0), title);
     }
 
     public static void printTotalTime() {
