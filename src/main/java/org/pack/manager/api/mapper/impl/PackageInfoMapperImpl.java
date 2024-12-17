@@ -2,10 +2,10 @@ package org.pack.manager.api.mapper.impl;
 
 import lombok.AllArgsConstructor;
 import org.pack.manager.api.exception.PackageNotFoundException;
+import org.pack.manager.api.mapper.PackageSourceMapper;
 import org.pack.manager.api.mapper.PackageInfoMapper;
 import org.pack.manager.api.model.Line;
 import org.pack.manager.api.model.PackageInfo;
-import org.pack.manager.api.service.SizeService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class PackageInfoMapperImpl implements PackageInfoMapper {
 
-    private final SizeService sizeService;
+    private final PackageSourceMapper aurMapper;
+    private final PackageSourceMapper defaultMapper;
 
     @Override
     public PackageInfo mapToOne(List<String> output) {
@@ -63,54 +64,13 @@ public class PackageInfoMapperImpl implements PackageInfoMapper {
 
     @Override
     public PackageInfo map(HashMap<Integer, String> packageHashMap) {
-        PackageInfo pack = new PackageInfo();
         String repository = packageHashMap.get(0);
 
         if ("aur".equalsIgnoreCase(repository)) {
-            pack.setRepository(packageHashMap.get(0));
-            pack.setName(packageHashMap.get(1));
-            pack.setVersion(packageHashMap.get(2));
-            pack.setDescription(packageHashMap.get(3));
-            pack.setUrl(packageHashMap.get(4));
-            pack.setLicences(packageHashMap.get(5));
-            pack.setGroups(packageHashMap.get(6));
-            pack.setProvides(packageHashMap.get(7));
-            pack.setDepends(packageHashMap.get(8));
-            pack.setOptionalDependencies(packageHashMap.get(9));
-            pack.setBuildDependencies(packageHashMap.get(10));
-            pack.setCheckDependencies(packageHashMap.get(11));
-            pack.setInConflictWith(packageHashMap.get(12));
-            pack.setReplaces(packageHashMap.get(13));
-            pack.setAurUrl(packageHashMap.get(14));
-            pack.setFirstSubmitted(packageHashMap.get(15));
-            pack.setKeywords(packageHashMap.get(16));
-            pack.setLastModified(packageHashMap.get(17));
-            pack.setMaintainer(packageHashMap.get(18));
-            pack.setMaintainerPopularity(Double.parseDouble(packageHashMap.get(19)));
-            pack.setVotes(Integer.parseInt(packageHashMap.get(20)));
-            pack.setOutOfDate(!"No".equalsIgnoreCase(packageHashMap.get(21)));
-        } else {
-            pack.setRepository(packageHashMap.get(0));
-            pack.setName(packageHashMap.get(1));
-            pack.setVersion(packageHashMap.get(2));
-            pack.setDescription(packageHashMap.get(3));
-            pack.setArchitecture(packageHashMap.get(4));
-            pack.setUrl(packageHashMap.get(5));
-            pack.setLicences(packageHashMap.get(6));
-            pack.setGroups(packageHashMap.get(7));
-            pack.setProvides(packageHashMap.get(8));
-            pack.setDepends(packageHashMap.get(9));
-            pack.setOptionalDependencies(packageHashMap.get(10));
-            pack.setInConflictWith(packageHashMap.get(11));
-            pack.setReplaces(packageHashMap.get(12));
-            pack.setDownloadSize(sizeService.map(packageHashMap, 13));
-            pack.setInstallSize(sizeService.map(packageHashMap, 14));
-            pack.setMaintainer(packageHashMap.get(15));
-            pack.setCreationDateTime(packageHashMap.get(16));
-            pack.setValidatedBy(packageHashMap.get(17));
+            return aurMapper.map(packageHashMap);
         }
 
-        return pack;
+        return defaultMapper.map(packageHashMap);
     }
 
     private Line processLine(String line, HashMap<Integer, String> packageHashMap, int index) {
