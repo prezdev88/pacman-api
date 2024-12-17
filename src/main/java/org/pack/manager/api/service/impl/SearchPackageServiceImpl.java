@@ -49,5 +49,7 @@ public class SearchPackageServiceImpl implements SearchPackageService {
             boolean isInstalled = installedPackageNames.contains(searchPackage.getName());
             searchPackage.setInstalled(isInstalled);
         });
+
+        return searchPackages;
     }
 }
