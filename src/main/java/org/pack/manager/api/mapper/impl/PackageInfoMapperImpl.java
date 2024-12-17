@@ -64,19 +64,19 @@ public class PackageInfoMapperImpl implements PackageInfoMapper {
     @Override
     public PackageInfo map(HashMap<Integer, String> packageHashMap) {
         PackageInfo pack = new PackageInfo();
+        String repository = packageHashMap.get(0);
 
-        pack.setRepository(packageHashMap.get(0));
-        pack.setName(packageHashMap.get(1));
-        pack.setVersion(packageHashMap.get(2));
-        pack.setDescription(packageHashMap.get(3));
-        pack.setLicences(packageHashMap.get(6));
-        pack.setGroups(packageHashMap.get(7));
-        pack.setProvides(packageHashMap.get(8));
-        pack.setDepends(packageHashMap.get(9));
-        pack.setOptionalDependencies(packageHashMap.get(10));
-
-        if ("aur".equalsIgnoreCase(pack.getRepository())) {
-            pack.setUrl(packageHashMap.get(5));
+        if ("aur".equalsIgnoreCase(repository)) {
+            pack.setRepository(packageHashMap.get(0));
+            pack.setName(packageHashMap.get(1));
+            pack.setVersion(packageHashMap.get(2));
+            pack.setDescription(packageHashMap.get(3));
+            pack.setUrl(packageHashMap.get(4));
+            pack.setLicences(packageHashMap.get(5));
+            pack.setGroups(packageHashMap.get(6));
+            pack.setProvides(packageHashMap.get(7));
+            pack.setDepends(packageHashMap.get(8));
+            pack.setOptionalDependencies(packageHashMap.get(9));
             pack.setBuildDependencies(packageHashMap.get(10));
             pack.setCheckDependencies(packageHashMap.get(11));
             pack.setInConflictWith(packageHashMap.get(12));
@@ -90,8 +90,17 @@ public class PackageInfoMapperImpl implements PackageInfoMapper {
             pack.setVotes(Integer.parseInt(packageHashMap.get(20)));
             pack.setOutOfDate(!"No".equalsIgnoreCase(packageHashMap.get(21)));
         } else {
+            pack.setRepository(packageHashMap.get(0));
+            pack.setName(packageHashMap.get(1));
+            pack.setVersion(packageHashMap.get(2));
+            pack.setDescription(packageHashMap.get(3));
             pack.setArchitecture(packageHashMap.get(4));
             pack.setUrl(packageHashMap.get(5));
+            pack.setLicences(packageHashMap.get(6));
+            pack.setGroups(packageHashMap.get(7));
+            pack.setProvides(packageHashMap.get(8));
+            pack.setDepends(packageHashMap.get(9));
+            pack.setOptionalDependencies(packageHashMap.get(10));
             pack.setInConflictWith(packageHashMap.get(11));
             pack.setReplaces(packageHashMap.get(12));
             pack.setDownloadSize(sizeService.map(packageHashMap, 13));
