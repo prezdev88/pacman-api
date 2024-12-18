@@ -1,6 +1,7 @@
 package org.pack.manager.api.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.pack.manager.api.exception.PackageNotFoundException;
 import org.pack.manager.api.mapper.SearchPackageMapper;
 import org.pack.manager.api.model.CommandRequest;
 import org.pack.manager.api.model.CommandResult;
@@ -25,15 +26,19 @@ public class SearchPackageServiceImpl implements SearchPackageService {
 
     @Override
     public List<SearchPackage> search(String name) {
-        String command = String.format("""
-            yay -Ss %s | grep -E "^[^[:space:]]*%s[^[:space:]]*"
-            """, name, name);
+        try {
+            String command = String.format("""
+                    yay -Ss %s | grep -E "^[^[:space:]]*%s[^[:space:]]*"
+                    """, name, name);
 
-        CommandResult commandResult = commandRunner.exec(new CommandRequest(command));
-        List<String> output = commandResult.getOutput();
-        List<SearchPackage> searchPackages = searchPackageMapper.map(output);
+            CommandResult commandResult = commandRunner.exec(new CommandRequest(command));
+            List<String> output = commandResult.getOutput();
+            List<SearchPackage> searchPackages = searchPackageMapper.map(output);
 
-        return flagInstalledApps(searchPackages);
+            return flagInstalledApps(searchPackages);
+        } catch (PackageNotFoundException packageNotFoundException) {
+            throw new PackageNotFoundException("Package '" + name + "' not found");
+        }
     }
 
     private List<SearchPackage> flagInstalledApps(List<SearchPackage> searchPackages) {

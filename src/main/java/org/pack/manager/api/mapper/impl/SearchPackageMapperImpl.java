@@ -2,6 +2,7 @@ package org.pack.manager.api.mapper.impl;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.pack.manager.api.exception.PackageNotFoundException;
 import org.pack.manager.api.mapper.SearchPackageMapper;
 import org.pack.manager.api.model.SearchPackage;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ import java.util.List;
 public class SearchPackageMapperImpl implements SearchPackageMapper {
     @Override
     public List<SearchPackage> map(List<String> output) {
+        if (output.isEmpty()) {
+            throw new PackageNotFoundException();
+        }
+
         List<SearchPackage> searchPackages = new ArrayList<>();
 
         output.forEach(line -> {
