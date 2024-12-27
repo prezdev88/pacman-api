@@ -30,17 +30,16 @@ public class PackageInfo {
     private String validatedBy;
 
     // Campos específicos de AUR
-    private String aurUrl; // URL de AUR
-    private String firstSubmitted; // Primera vez subido
-    private List<String> keywords; // Palabras clave
-    private String lastModified; // Última vez modificado
-    private double maintainerPopularity; // Popularidad
-    private int votes; // Votos
-    private boolean outOfDate; // Desactualizado
-    private List<String> buildDependencies; // Dependencias de compilación
-    private List<String> checkDependencies; // Dependencias de verificación
+    private String aurUrl;
+    private String firstSubmitted;
+    private List<String> keywords;
+    private String lastModified;
+    private double maintainerPopularity;
+    private int votes;
+    private boolean outOfDate;
+    private List<String> buildDependencies;
+    private List<String> checkDependencies;
 
-    // Métodos setters personalizados para procesar cadenas de texto en listas
     public void setLicences(String licences) {
         this.licences = Arrays.stream(licences.split("\\s+"))
                 .map(String::trim)
